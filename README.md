@@ -39,7 +39,7 @@
 - belongs_to_active_hash  :category
 - belongs_to_active_hash  :conditon
 - belongs_to_active_hash  :postage
-- belongs_to_active_hash  :prefectures
+- belongs_to_active_hash  :prefecture
 - belongs_to_active_hash  :shipment
 
 
@@ -82,4 +82,4 @@
 
 ### Association
 - belongs_to  :item_add
-- has_one_active_hash :prefectures
+- has_one_active_hash :prefecture
