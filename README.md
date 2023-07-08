@@ -10,7 +10,7 @@
 |firstname                 |string                    |null: false                             |
 |lastnamekana              |string                    |null: false                             |
 |firstnamekana             |string                    |null: false                             |
-|birthday                  |date                      |null: false  DEFAULT_GENERATED          |
+|birthday                  |date                      |null: false                             |
 
 ### Association
 - has_many :item_adds
@@ -25,11 +25,11 @@
 |name                      |string                    |null: false                             |
 |price                     |integer                   |null: false                             |
 |explanation               |text                      |null: false                             |
-|category_id               |integer                   |null: false,                            |
-|conditon_id               |integer                   |null: false,                            |
-|postage_id                |integer                   |null: false,                            |
-|prefectures_id            |integer                   |null: false,                            |
-|shipment_id               |integer                   |null: false,                            |
+|category_id               |integer                   |null: false                             |
+|conditon_id               |integer                   |null: false                             |
+|postage_id                |integer                   |null: false                             |
+|prefecture_id             |integer                   |null: false                             |
+|shipment_id               |integer                   |null: false                             |
 |user                      |references                |null: false, foreign_key: true          |
 
 ### Association
@@ -43,21 +43,21 @@
 - belongs_to_active_hash  :shipment
 
 
-## item_add テーブル
+## item_adds テーブル
 |Column                    |Type                      |Option                                  |
 |--------------------------|--------------------------|----------------------------------------|
 |user                      |references                |null: false, foreign_key: true          |
 |item                      |references                |null: false, foreign_key: true          |
-|add                       |references                |null: false, foreign_key: true          |
+
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :add_oder
+- has_one :add
 
 
 
-## comment テーブル
+## comments テーブル
 |Column                    |Type                      |Option                                  |
 |--------------------------|--------------------------|----------------------------------------|
 |content                   |text                      |null: false                             |
@@ -74,13 +74,13 @@
 |--------------------------|--------------------------|----------------------------------------|
 |id                        |string                    |null: false                             |
 |post                      |string                    |null: false                             |
-|prefecture_id             |integer                   |null: false,                            |
-|city                      |string                    |null: false,                            |
-|address                   |string                    |null: false,                            |
-|build                     |string                    |null: true,                             |
-|tel                       |string                    |null: false,                            |
+|prefecture_id             |integer                   |null: false                             |
+|city                      |string                    |null: false                             |
+|address                   |string                    |null: false                             |
+|build                     |string                    |                                        |
+|tel                       |string                    |null: false                             |
 |item                      |references                |null: false, foreign_key: true          |
 
 ### Association
-- has_many  :order_adds
+- belongs_to  :item_add
 - has_one_active_hash :prefectures
