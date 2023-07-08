@@ -34,7 +34,7 @@
 
 ### Association
 - belongs_to :user
-- has_many :item_adds
+- has_one :item_add
 - has_many :comments
 - belongs_to_active_hash  :category
 - belongs_to_active_hash  :conditon
@@ -69,17 +69,16 @@
 - belongs_to :user
 
 
-## add テーブル
+## adds テーブル
 |Column                    |Type                      |Option                                  |
 |--------------------------|--------------------------|----------------------------------------|
-|id                        |string                    |null: false                             |
 |post                      |string                    |null: false                             |
 |prefecture_id             |integer                   |null: false                             |
 |city                      |string                    |null: false                             |
 |address                   |string                    |null: false                             |
 |build                     |string                    |                                        |
 |tel                       |string                    |null: false                             |
-|item                      |references                |null: false, foreign_key: true          |
+|item_add                  |references                |null: false, foreign_key: true          |
 
 ### Association
 - belongs_to  :item_add
