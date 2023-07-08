@@ -3,31 +3,20 @@
 ## users テーブル
 |Column                    |Type                      |Option                                  |
 |--------------------------|--------------------------|----------------------------------------|
-|email                     |string                    |null: false                             |
+|email                     |string                    |null: false,unique:true                 |
 |encrypted_password        |string                    |null: false                             |
 |nickname                  |string                    |null: false                             |
 |lastname                  |string                    |null: false                             |
 |firstname                 |string                    |null: false                             |
 |lastnamekana              |string                    |null: false                             |
 |firstnamekana             |string                    |null: false                             |
-|birthday                  |string                    |null: false                             |
+|birthday                  |date                      |null: false  DEFAULT_GENERATED          |
 
-- has_one :order
+### Association
+- has_many :item_adds
 - has_many :items
+- has_many :comments
 
-## orders テーブル
-|Column                    |Type                      |Option                                  |
-|--------------------------|--------------------------|----------------------------------------|
-|id                        |string                    |null: false                             |
-|payprice                  |integer                   |null: false                             |
-|date                      |datetime                  |null: false                             |
-|name                      |references                |null: false, foreign_key: true          |
-|nickname                  |references                |null: false, foreign_key: true          |
-
-- belongs_to :user
-- belongs_to :item
-- has_many :order_adds
-- has_many :adds through:order_adds
 
 
 ## items テーブル
@@ -35,29 +24,49 @@
 |--------------------------|--------------------------|----------------------------------------|
 |name                      |string                    |null: false                             |
 |price                     |integer                   |null: false                             |
-|explan                    |text                      |null: false                             |
-|category                  |string                    |null: false,                            |
-|status                    |string                    |null: false,                            |
-|postage                   |string                    |null: false,                            |
-|sender                    |string                    |null: false,                            |
-|shipment                  |string                    |null: false,                            |
-|comment                   |text                      |null: false,                            |
-|nickname                  |references                |null: false, foreign_key: true          |
+|explanation               |text                      |null: false                             |
+|category_id               |integer                   |null: false,                            |
+|conditon_id               |integer                   |null: false,                            |
+|postage_id                |integer                   |null: false,                            |
+|prefectures_id            |integer                   |null: false,                            |
+|shipment_id               |integer                   |null: false,                            |
+|user                      |references                |null: false, foreign_key: true          |
 
-
-- has_one :order
+### Association
 - belongs_to :user
+- has_many :item_adds
+- has_many :comments
+- belongs_to_active_hash  :category
+- belongs_to_active_hash  :conditon
+- belongs_to_active_hash  :postage
+- belongs_to_active_hash  :prefectures
+- belongs_to_active_hash  :shipment
 
 
-## order_adds テーブル
+## item_add テーブル
 |Column                    |Type                      |Option                                  |
 |--------------------------|--------------------------|----------------------------------------|
-|order_id                  |references                |null: false, foreign_key: true          |
-|add_id                    |references                |null: false, foreign_key: true          |
+|user                      |references                |null: false, foreign_key: true          |
+|item                      |references                |null: false, foreign_key: true          |
+|add                       |references                |null: false, foreign_key: true          |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- belongs_to :add_oder
 
 
-- belongs_to :order
-- belongs_to :add
+
+## comment テーブル
+|Column                    |Type                      |Option                                  |
+|--------------------------|--------------------------|----------------------------------------|
+|content                   |text                      |null: false                             |
+|user                      |references                |null: false, foreign_key: true          |
+|item                      |references                |null: false, foreign_key: true          |
+
+### Association
+- belongs_to :item
+- belongs_to :user
 
 
 ## add テーブル
@@ -65,11 +74,13 @@
 |--------------------------|--------------------------|----------------------------------------|
 |id                        |string                    |null: false                             |
 |post                      |string                    |null: false                             |
-|prefecture                |string                    |null: false                             |
+|prefecture_id             |integer                   |null: false,                            |
 |city                      |string                    |null: false,                            |
 |address                   |string                    |null: false,                            |
-|build                     |string                    |null: false,                            |
+|build                     |string                    |null: true,                             |
 |tel                       |string                    |null: false,                            |
+|item                      |references                |null: false, foreign_key: true          |
 
+### Association
 - has_many  :order_adds
-- has_many :orders, through: order_adds
+- has_one_active_hash :prefectures
