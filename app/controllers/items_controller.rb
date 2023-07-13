@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
    
 
   def index
-
+   @item = Item.all 
   end
 
   def new
@@ -16,15 +16,21 @@ class ItemsController < ApplicationController
 
   def create
      @item = Item.new(item_params)
-
     if @item.save
         redirect_to root_path
     else
         render :new
     end
-
   end
 
+  def destory
+    item = Item.find(params[:id])
+    item.destroy
+  end
+  
+  def show
+     @item = Item.find(params[:id])
+  end
 
   private
     
