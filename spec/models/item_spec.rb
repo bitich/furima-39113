@@ -7,7 +7,8 @@ RSpec.describe Item, type: :model do
 
   describe '出品する場合' do
         it "nameが空では登録できない" do
-          item = Item.new(name: '', price: '300', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',prefecture_id: '2',shipment_id: '2')
+          item = Item.new(name: '', price: '300', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',
+                          prefecture_id: '2',shipment_id: '2')
           item.valid?
           expect(item.errors.full_messages).to include "Name can't be blank"
         end
@@ -17,12 +18,14 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include "Price can't be blank", "Price is not a number"
         end
         it "priceが300以下では登録できない" do
-          item = Item.new(name: 'urano', price: '200', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',prefecture_id: '2',shipment_id: '2')
+          item = Item.new(name: 'urano', price: '200', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',
+                          prefecture_id: '2',shipment_id: '2')
           item.valid?
           expect(item.errors.full_messages).to include "Price must be greater than 299"
         end
         it "imageが空では登録できない" do
-          item = Item.new( name: '', price: '300', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',prefecture_id: '2',shipment_id: '2')
+          item = Item.new( name: '', price: '300', explanation: 'テスト', category_id: '2', condition_id: '2', postage_id: '2',
+                           prefecture_id: '2',shipment_id: '2')
           item.image = nil
           item.valid?
           expect(item.errors.full_messages).to include "Image can't be blank"
