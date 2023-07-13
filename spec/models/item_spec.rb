@@ -57,13 +57,55 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include "Shipment can't be blank"
         end
+        it "categoryが---では登録できない" do
+          @item.category_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Category can't be blank"
+        end
+        it "categoryが---では登録できない" do
+          @item.condition_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Condition can't be blank"
+        end
+        it "postageが---では登録できない" do
+          @item.postage_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Postage can't be blank"
+        end
+        it "prefectureが---では登録できない" do
+          @item.prefecture_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Prefecture can't be blank"
+        end
+        it "shipmentが---では登録できない" do
+          @item.shipment_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Shipment can't be blank"
+        end
+        it "価格に半角数字以外が含まれている場合は出品できない" do
+          @item.price = "111a"
+          @item.valid?
+          expect(@item.errors.full_messages).to include "Price is not a number"
+        end
+        it "価格が9_999_999円を超えると出品できない" do
+          @item.price = "1000000"
+          @item.valid?
+          
+          expect(@item.errors.full_messages).to include "Price must be less than 1000000"
+        end
+        it "userが紐付いていなければ出品できない" do
+          @item.user = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include "User must exist"
+        end
+        it '入力が存在すれば登録できる' do
+          expect(@item).to be_valid
+        end
         
 
 
 
-
-
-
+        
 
       end
       

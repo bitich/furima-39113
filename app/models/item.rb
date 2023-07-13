@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   validates :image, presence: true
   validates :name,presence:true
-  validates :price, presence: true ,numericality: {greater_than:299,less_than:999999}
+  validates :price, presence: true ,numericality: {only_integer: true,greater_than:299,less_than:1000000}
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category 
   belongs_to :condition 
