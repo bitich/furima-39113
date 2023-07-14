@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
-  belongs_to :user
   has_one_attached :image
+  #belongs_to :user
+  #has_one :item_add
+
   validates :image, presence: true
   validates :name,presence:true
   validates :price, presence: true ,numericality: {only_integer: true,greater_than:299,less_than:1000000}
