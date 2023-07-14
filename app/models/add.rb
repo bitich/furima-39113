@@ -1,3 +1,3 @@
-class Add < ApplicationRecord
+#class Add < ApplicationRecord
 
-end
+#end
