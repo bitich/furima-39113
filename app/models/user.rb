@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  #has_many :item_adds
+  has_many :item_adds
   has_many :items
 
   validates :nickname,presence: true, length: { maximum: 6}
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   
   validates :nickname, presence: true
   validates :birthday, presence: true
-  #has_many :item_add
-  #has_many :items
+  has_many :item_add
+  has_many :items
   #has_many :comments, dependent: :destroy
 end
