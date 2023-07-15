@@ -24,11 +24,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def destory
-    #item = Item.find(params[:id])
-    #item.destroy
-    #redirect_to action: :index
-  #end
+  def destroy
+
+     item = Item.find(params[:id])
+     if user_signed_in? && current_user.id == item.user_id 
+     item.destroy
+    redirect_to action: :index
+   end
+  end
   
   def show
      
@@ -42,7 +45,7 @@ class ItemsController < ApplicationController
      else
         redirect_to action: :index
      end
-     end
+     #end
   end
 
   def update
