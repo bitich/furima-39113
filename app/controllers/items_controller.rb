@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def edit
      
-     if @item.item_add.blank?
+     #if @item.item_add.blank?
       if current_user.id == @item.user.id 
         render :edit
      else
