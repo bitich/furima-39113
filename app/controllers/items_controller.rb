@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   #def destory
     #item = Item.find(params[:id])
     #item.destroy
+    #redirect_to action: :index
   #end
   
   def show
@@ -35,17 +36,16 @@ class ItemsController < ApplicationController
 
   def edit
      
-     if @item_add.blank?
+     if @item.item_add.blank?
       if current_user.id == @item.user.id 
         render :edit
      else
-        render :index
+        redirect_to action: :index
      end
      end
   end
 
   def update
-    
          if @item.update(item_params)
             redirect_to item_path(@item.id)
          else

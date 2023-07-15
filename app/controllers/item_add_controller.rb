@@ -1,2 +1,5 @@
-#class ItemAddController < ApplicationController
-#end
+class ItemAddController < ApplicationController
+
+
+  
+end
