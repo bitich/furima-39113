@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
    before_action :authenticate_user!,except:[:index, :new, :show]
+   before_action :set_item, only: [:edit,:show,:update]
+   before_action :move_to_index, only: [:edit]
   def index
    @item = Item.order("created_at DESC")
   end
@@ -25,11 +27,31 @@ class ItemsController < ApplicationController
   #def destory
     #item = Item.find(params[:id])
     #item.destroy
+    #redirect_to action: :index
   #end
   
   def show
-     @item = Item.find(params[:id])
+     
   end
+
+  def edit
+     
+     #if @item.item_add.blank?
+      if current_user.id == @item.user.id 
+        render :edit
+     else
+        redirect_to action: :index
+     end
+     end
+  end
+
+  def update
+         if @item.update(item_params)
+            redirect_to item_path(@item.id)
+         else
+            render :edit 
+         end
+   end 
 
   private
     
@@ -38,6 +60,16 @@ class ItemsController < ApplicationController
                                   :shipment_id).merge(user_id: current_user.id)
       end
      
+      def set_item
+         @item = Item.find(params[:id])
+      end
+
+      def move_to_index
+         unless user_signed_in? && current_user.id == @item.user.id
+            redirect_to action: :index
+         end
+      end
 end
+
   
 
