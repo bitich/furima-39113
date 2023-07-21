@@ -6,6 +6,7 @@
     "firstnamekana",
     "lastname",
     "lastnamekana",
+    "payjp",
     "payprice"
   ]
 }

@@ -1,7 +1,7 @@
 class OrderAdd
 
   include ActiveModel::Model
-  attr_accessor :post, :prefecture_id, :city, :address, :build, :tell, :user_id, :item_id
+  attr_accessor :post, :prefecture_id, :city, :address, :build, :tell, :user_id, :item_id, :token
 
   
   validates :post, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'を入力してください' }
@@ -11,6 +11,7 @@ class OrderAdd
   validates :tell, presence:true
   validates :user_id, presence:true
   validates :item_id, presence:true
+  validates :token, presence: true
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)

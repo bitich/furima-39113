@@ -3,4 +3,6 @@ class Order < ApplicationRecord
   has_one :add
   belongs_to :item
 
+  
+
 end
