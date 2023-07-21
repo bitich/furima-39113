@@ -46,10 +46,11 @@ class Prefecture < ActiveHash::Base
     {id: 44, name: "大分"},
     {id: 45, name: "熊本"},
     {id: 46, name: "鹿児島"},
-    {id: 47, name: "沖縄"},
+    {id: 47, name: "沖縄"}
 
   ]
 
   include ActiveHash::Associations
   has_many :items
+  #has_one :add
 end

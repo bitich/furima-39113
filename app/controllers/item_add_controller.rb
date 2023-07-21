@@ -1,5 +1,0 @@
-#class ItemAddController < ApplicationController
-
-
-
-#end
