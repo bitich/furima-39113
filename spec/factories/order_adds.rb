@@ -8,7 +8,7 @@ FactoryBot.define do
     tell {"09073855911"}
     token {"tok_abcdefghijk00000000000000000"}
     
-    association :user 
+   
 
 end
 end
