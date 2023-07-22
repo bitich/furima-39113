@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
    
   def index
    @item = Item.order("created_at DESC")
+  
   end
 
   def new
@@ -40,13 +41,13 @@ class ItemsController < ApplicationController
 
   def edit
      
-     #if @item.item_add.blank?
+     if @item.order_add.blank?
       if current_user.id == @item.user.id 
         render :edit
      else
         redirect_to action: :index
      end
-     #end
+     end
   end
 
   def update
