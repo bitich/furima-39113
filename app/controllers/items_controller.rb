@@ -36,10 +36,7 @@ class ItemsController < ApplicationController
   end
   
   def show
-   if user_signed_in?
-   else
-      redirect_to root_path
-   end
+   
        
 
   end
@@ -48,7 +45,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id]) 
    if @item.order.present?
       redirect_to root_path
-   end
+   else
    if user_signed_in?
       if current_user.id == @item.user.id 
         render :edit
@@ -56,7 +53,7 @@ class ItemsController < ApplicationController
    else
         redirect_to action: :index
      end
-   
+   end
   end
 
   def update
