@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_add do
     post {"111-1111"}
-    item_id {1}
+    build {"福岡ビル"}
     prefecture_id {2}
     city {"大野城市"}
     address {"1-1-2"}

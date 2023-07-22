@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, expect: :index
-
+  before_action :item_find, only: [:index,:create]
 
   def index
-    @item = Item.find(params[:item_id])
    if  current_user.id == @item.user.id 
     redirect_to root_path
    else
@@ -18,7 +17,6 @@ class OrdersController < ApplicationController
   
   def create
    
-    @item = Item.find(params[:item_id])
     @order_add = OrderAdd.new(order_params)
 
 
@@ -39,12 +37,16 @@ class OrdersController < ApplicationController
 
   private
 
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
+
   def order_params
      params.require(:order_add).permit(:post, :prefecture_id, :city, :address, :build, :tell).merge(user_id: current_user.id, item_id: @item.id,token: params[:token])
   end
 
   def pay_item
-      Payjp.api_key = "sk_test_28b4b33645e6bf7db0b1b896"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         amount: @item.price,  # 商品の値段
         card: order_params[:token],    # カードトークン

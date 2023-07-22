@@ -8,7 +8,7 @@ class OrderAdd
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :city, presence:true
   validates :address, presence: true
-  validates :tell, presence:true
+  validates :tell, format:{ with: /\A\d{10,11}\z/}
   validates :user_id, presence:true
   validates :item_id, presence:true
   validates :token, presence: true
