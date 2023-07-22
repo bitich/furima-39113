@@ -1,3 +1,6 @@
-#class Add < ApplicationRecord
-  #belongs_to :item_add
-#end
+class Add < ApplicationRecord
+  belongs_to :order
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
+end
