@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
      unless user_signed_in?
         redirect_to action: :index
      end
-
      @item = Item.new
 
   end
@@ -37,18 +36,27 @@ class ItemsController < ApplicationController
   end
   
   def show
-     
+   if user_signed_in?
+   else
+      redirect_to root_path
+   end
+       
+
   end
 
   def edit
-     
-     if @item.order_add.blank?
+    @item = Item.find(params[:id]) 
+   if @item.order.present?
+      redirect_to root_path
+   end
+   if user_signed_in?
       if current_user.id == @item.user.id 
         render :edit
-     else
+      end
+   else
         redirect_to action: :index
      end
-     end
+   
   end
 
   def update
@@ -75,7 +83,6 @@ class ItemsController < ApplicationController
             redirect_to action: :index
          end
       end
-end
-
+   end
   
 
