@@ -82,6 +82,11 @@ RSpec.describe OrderAdd, type: :model do
           @order_add.valid?
           expect(@order_add.errors.full_messages).to include "Tell is invalid"
         end
+        it '郵便番号が3桁-4桁の数字の形でないと保存できない' do
+          @order_add.post = "11-11111"
+          @order_add.valid?
+          expect(@order_add.errors.full_messages).to include "Post を入力してください"
+        end
 
 
 

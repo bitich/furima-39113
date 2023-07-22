@@ -7,8 +7,6 @@ FactoryBot.define do
     address {"1-1-2"}
     tell {"09073855911"}
     token {"tok_abcdefghijk00000000000000000"}
-    
-   
 
 end
 end
