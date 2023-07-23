@@ -79,3 +79,7 @@ gem 'image_processing', '~> 1.2'
 
 gem 'net-http'
 gem 'payjp'
+
+group :production do
+  gem 'pg'
+end
