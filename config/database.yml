@@ -15,7 +15,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
-  socket: /tmp/mysql.sock
+  #socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -59,6 +59,6 @@ production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
-  database: furima-39113_production
-  username: furima-39113
-  password: <%= ENV['FURIMA_39113_DATABASE_PASSWORD'] %>
+  #database: furima-39113_production
+  #username: furima-39113
+  #password: <%= ENV['FURIMA_39113_DATABASE_PASSWORD'] %>
