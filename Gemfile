@@ -78,9 +78,5 @@ gem 'net-http'
 gem 'payjp'
 
 group :production do
-<<<<<<< Updated upstream
   gem 'pg'
-=======
-gem 'pg'
->>>>>>> Stashed changes
 end
